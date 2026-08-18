@@ -3,8 +3,8 @@ use std::{env::current_dir, io::ErrorKind::Other, path::PathBuf, process::exit};
 use arg_picker::{Picker, PickerArg, macros::arg};
 use just_fmt::kebab_case;
 
-mod badage;
-use badage::generate;
+mod badge;
+use badge::generate;
 
 const KEY: PickerArg<String> = arg![key: _];
 const VALUE: PickerArg<String> = arg![value: _];
@@ -12,14 +12,14 @@ const VALUE: PickerArg<String> = arg![value: _];
 /// USAGE: mingling-badge-gen --key <KEY> --value <VALUE>
 ///
 /// Example: mingling-badge-gen --key version --value "0.1.0"
-/// > Badage generated ==> ./badage-key.png
+/// > badge generated ==> ./badge-key.png
 fn main() {
-    let (badage_key, badage_value) = Picker::from_args()
+    let (badge_key, badge_value) = Picker::from_args()
         .pick_or(&KEY, || "Unknown".into())
         .pick_or(&VALUE, || "Unknown".into())
         .unwrap();
 
-    let export_file = export_file(&badage_key);
+    let export_file = export_file(&badge_key);
 
     if export_file.exists() {
         eprintln!(
@@ -33,11 +33,8 @@ fn main() {
         exit(2)
     }
 
-    match generate(&badage_key, &badage_value, &export_file) {
-        Ok(_) => eprintln!(
-            "Badage generated ==> \"{}\"",
-            &export_file.to_string_lossy()
-        ),
+    match generate(&badge_key, &badge_value, &export_file) {
+        Ok(_) => eprintln!("badge generated ==> \"{}\"", &export_file.to_string_lossy()),
         Err(e) => match e.kind() {
             Other => {
                 eprintln!("Generate failed: {}", e.to_string());
@@ -55,5 +52,5 @@ fn main() {
 fn export_file(name: &String) -> PathBuf {
     current_dir()
         .unwrap()
-        .join(format!("badage-{}.png", kebab_case!(name)))
+        .join(format!("badge-{}.png", kebab_case!(name)))
 }

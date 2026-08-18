@@ -29,7 +29,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Generate badges
-        run: ./gen-badages.sh
+        run: ./gen-badges.sh
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

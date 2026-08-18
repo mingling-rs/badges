@@ -47,17 +47,17 @@ esac
 
 echo "  stars=$stars  version=$version  build=$build"
 
-# `cargo badage` refuses to overwrite existing files.
-rm -f badage-stars.png badage-license.png badage-version.png badage-build.png
+# `cargo badge` refuses to overwrite existing files.
+rm -f badge-stars.png badge-license.png badge-version.png badge-build.png
 
 echo "Generating badges..."
-cargo badage --key="Stars" --value="$stars"
-cargo badage --key="License" --value="MIT OR Apache-2.0"
-cargo badage --key="Version" --value="$version"
-cargo badage --key="Build" --value="$build"
+cargo badge --key="Stars" --value="$stars"
+cargo badge --key="License" --value="MIT OR Apache-2.0"
+cargo badge --key="Version" --value="$version"
+cargo badge --key="Build" --value="$build"
 
 # Move the finished badges into deploy/.
 mkdir -p deploy
 mv *.png deploy/
 
-echo "Done: deploy/badage-stars.png deploy/badage-license.png deploy/badage-version.png deploy/badage-build.png"
+echo "Done: deploy/badge-stars.png deploy/badge-license.png deploy/badge-version.png deploy/badge-build.png"

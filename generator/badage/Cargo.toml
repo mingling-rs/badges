@@ -6,3 +6,7 @@ edition.workspace = true
 [dependencies]
 arg-picker.workspace = true
 just_fmt.workspace = true
+ab_glyph.workspace = true
+image.workspace = true
+tiny-skia.workspace = true
+ureq.workspace = true

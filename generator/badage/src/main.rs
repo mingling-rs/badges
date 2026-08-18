@@ -1,12 +1,10 @@
-use std::{
-    env::current_dir,
-    io::{Error, ErrorKind::Other},
-    path::{Path, PathBuf},
-    process::exit,
-};
+use std::{env::current_dir, io::ErrorKind::Other, path::PathBuf, process::exit};
 
-use arg_picker::{macros::arg, Picker, PickerArg};
+use arg_picker::{Picker, PickerArg, macros::arg};
 use just_fmt::kebab_case;
+
+mod badage;
+use badage::generate;
 
 const KEY: PickerArg<String> = arg![key: _];
 const VALUE: PickerArg<String> = arg![value: _];
@@ -57,20 +55,5 @@ fn main() {
 fn export_file(name: &String) -> PathBuf {
     current_dir()
         .unwrap()
-        .join(format!("badage-{}", kebab_case!(name)))
-}
-
-/// Generates a badge image file.
-///
-/// # Arguments
-///
-/// * `key` - The badge key text.
-/// * `value` - The badge value text.
-/// * `out_file` - The output file path for the generated badge.
-///
-/// # Returns
-///
-/// `Ok(())` on success, or an `Error` if the badge generation fails.
-fn generate(key: &String, value: &String, out_file: &Path) -> Result<(), Error> {
-    Ok(())
+        .join(format!("badage-{}.png", kebab_case!(name)))
 }

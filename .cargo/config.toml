@@ -1,2 +1,5 @@
 [build]
 target-dir = "./.temp/"
+
+[alias]
+badage = "run --manifest-path generator/badage/Cargo.toml --bin mingling-badges --quiet --"

@@ -24,10 +24,10 @@ use tiny_skia::{
 const FONT_URL: &str =
     "https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@2.304/fonts/ttf/JetBrainsMono-Bold.ttf";
 
-/// Badge geometry — a shields.io-style badge exported 256px tall with the
+/// Badge geometry — a shields.io-style badge exported 36px tall with the
 /// width following the text content. All measurements derive from the
 /// 30px design via [`SCALE`].
-const BADGE_HEIGHT: f32 = 256.0;
+const BADGE_HEIGHT: f32 = 36.0;
 const DESIGN_HEIGHT: f32 = 30.0;
 const SCALE: f32 = BADGE_HEIGHT / DESIGN_HEIGHT;
 const FONT_SIZE: f32 = 12.0 * SCALE;

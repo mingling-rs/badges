@@ -28,6 +28,14 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Cache cargo build artifacts
+        uses: Swatinem/rust-cache@v2
+        with:
+          # The workspace target dir is `.temp` (.cargo/config.toml);
+          # cache it explicitly so scheduled runs don't rebuild all deps.
+          workspaces: . -> .temp
+          cache-on-failure: true
+
       - name: Generate badges
         run: ./gen-badges.sh
 

@@ -51,10 +51,19 @@ echo "  stars=$stars  version=$version  build=$build"
 rm -f badge-stars.png badge-license.png badge-version.png badge-build.png
 
 echo "Generating badges..."
-cargo badge --key="Stars" --value="$stars"
-cargo badge --key="License" --value="MIT OR Apache-2.0"
-cargo badge --key="Version" --value="$version"
-cargo badge --key="Build" --value="$build"
+
+BADGE_OPTS=(
+    --border-width=0
+    --key-background-color="#d4a84b"
+    --value-background-color="#d4a84b"
+    --key-font-color="#e8ddd0"
+    --value-font-color="#e8ddd0"
+)
+
+cargo badge "${BADGE_OPTS[@]}" --key="Stars" --value="$stars"
+cargo badge "${BADGE_OPTS[@]}" --key="License" --value="MIT OR Apache-2.0"
+cargo badge "${BADGE_OPTS[@]}" --key="Version" --value="$version"
+cargo badge "${BADGE_OPTS[@]}" --key="Build" --value="$build"
 
 # Move the finished badges into deploy/.
 mkdir -p deploy
